@@ -1,0 +1,7 @@
+{{- $dato := .Date -}}
+{{- if and .Lastmod (gt .Lastmod .Date) }}{{ $dato = .Lastmod }}{{ end -}}
+{{- if or (not .IsPage) $dato.IsZero }}{{ $dato = now }}{{ end -}}
+<footer>
+  <p>Dato: <time datetime="{{ $dato.Format "2006-01-02" }}">{{ $dato.Format "02.01.2006" }}</time> · Versjon {{ .Params.versjon | default site.Params.versjon }}</p>
+  <p><a href="{{ "/speil.txt" | relURL }}">Andre steder denne siden finnes</a></p>
+</footer>

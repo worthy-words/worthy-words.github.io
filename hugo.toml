@@ -1,0 +1,38 @@
+# Worthy Words – Hugo-oppsett
+# baseURL er "/" og relativeURLs er på, slik at den ferdige siden
+# virker fra roten på hvilken som helst vert eller speil.
+baseURL = "/"
+relativeURLs = true
+languageCode = "no"
+defaultContentLanguage = "no"
+title = "Worthy Words"
+disableHugoGeneratorInject = true
+
+# Ingen RSS, sitemap eller taksonomier: de krever absolutte adresser
+# eller gir sider vi ikke trenger ennå.
+disableKinds = ["taxonomy", "term", "rss", "sitemap", "robotstxt"]
+
+[params]
+  # Versjon for sider som ikke har egen «versjon» i forsiden av filen.
+  versjon = "1"
+  beskrivelse = "Artikler og åpne brev."
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+[menus]
+  [[menus.main]]
+    name = "Artikler"
+    pageRef = "/artikler"
+    weight = 10
+  [[menus.main]]
+    name = "Brev"
+    pageRef = "/brev"
+    weight = 20
+  [[menus.main]]
+    name = "Om"
+    pageRef = "/om"
+    weight = 30
+
+[markup.goldmark.parser.attribute]
+  block = true

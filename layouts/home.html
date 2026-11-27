@@ -1,0 +1,20 @@
+{{ define "main" }}
+{{ .Content }}
+<h2>Siste artikler</h2>
+{{ $artikler := where site.RegularPages "Section" "artikler" }}
+{{ with $artikler }}
+<ul class="liste">
+{{ range .ByDate.Reverse | first 10 }}
+  <li><a href="{{ .RelPermalink }}">{{ .Title }}</a><br><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02.01.2006" }}</time></li>
+{{ end }}
+</ul>
+{{ else }}<p>Ingen artikler ennå.</p>{{ end }}
+<h2>Åpne brev</h2>
+{{ with where site.RegularPages "Section" "brev" }}
+<ul class="liste">
+{{ range .ByDate.Reverse | first 10 }}
+  <li><a href="{{ .RelPermalink }}">{{ .Title }}</a><br><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02.01.2006" }}</time></li>
+{{ end }}
+</ul>
+{{ else }}<p>Ingen brev ennå.</p>{{ end }}
+{{ end }}

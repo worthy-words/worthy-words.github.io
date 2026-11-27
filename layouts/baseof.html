@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if eq .Kind "404" }}Siden finnes ikke – {{ site.Title }}{{ else if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} – {{ site.Title }}{{ end }}</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.beskrivelse }}{{ end }}">
+<style>
+:root { color-scheme: light dark; --tekst: #1d1d1b; --dempet: #5e5e58; --bakgrunn: #fbfaf6; --linje: #d9d6cc; --lenke: #1f4e8c; --merke: #fff3c4; }
+@media (prefers-color-scheme: dark) { :root { --tekst: #e8e6df; --dempet: #a5a39b; --bakgrunn: #1a1a18; --linje: #3a3a35; --lenke: #9bbcf0; --merke: #4a3f12; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bakgrunn); color: var(--tekst); font: 1.125rem/1.65 Georgia, "Times New Roman", serif; }
+.ramme { max-width: 40rem; margin: 0 auto; padding: 0 1rem; }
+header { border-bottom: 1px solid var(--linje); padding: 1.25rem 0 1rem; }
+header .navn { font-size: 1.5rem; font-weight: bold; color: var(--tekst); text-decoration: none; }
+nav ul { list-style: none; margin: .5rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 1.25rem; }
+nav a { color: var(--lenke); }
+main { padding: 1.5rem 0 2rem; }
+h1 { font-size: 1.9rem; line-height: 1.25; margin: .5rem 0 1rem; }
+h2 { font-size: 1.35rem; margin-top: 2rem; }
+a { color: var(--lenke); }
+.liste { list-style: none; padding: 0; }
+.liste li { margin: 0 0 1rem; }
+.liste time, .metadata { color: var(--dempet); font-size: .95rem; }
+.plassholder { background: var(--merke); border-left: 4px solid #c9a227; padding: .6rem .9rem; margin: 1rem 0; font-family: system-ui, sans-serif; font-size: .95rem; }
+footer { border-top: 1px solid var(--linje); padding: 1rem 0 2rem; color: var(--dempet); font-size: .95rem; }
+footer p { margin: .25rem 0; }
+</style>
+</head>
+<body>
+<div class="ramme">
+<header>
+  <a class="navn" href="{{ "/" | relURL }}">{{ site.Title }}</a>
+  <nav aria-label="Hovedmeny"><ul>
+  {{ range site.Menus.main }}<li><a href="{{ .URL }}">{{ .Name }}</a></li>{{ end }}
+  </ul></nav>
+</header>
+<main>
+{{ block "main" . }}{{ end }}
+</main>
+{{ partial "bunntekst.html" . }}
+</div>
+</body>
+</html>
