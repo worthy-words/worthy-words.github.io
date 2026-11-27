@@ -1,2 +1,2 @@
-# worthy-words
-worthy-words
+Worthy Words
+
